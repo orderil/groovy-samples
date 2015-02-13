@@ -1,0 +1,68 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'groovy'
+apply plugin: 'war'
+//apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'jetty'
+
+//sourceCompatibility = 1.5
+version = '1.0'
+
+repositories {
+//    mavenLocal()
+    mavenCentral()
+//    maven {
+//        url 'http://bld01d-prf-08.portal.webmd.com:8081/nexus/content/groups/public/'
+//    }
+}
+
+configurations {
+    ivy
+}
+
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
+
+def springframework_version = '3.2.4.RELEASE'
+
+/*
+buildscript {
+    repositories { mavenCentral() }
+    dependencies { classpath 'org.ajoberstar:gradle-jacoco:0.1.0' }
+    dependencies { classpath 'mysql:mysql-connector-java:5.1.31' }
+}
+*/
+
+group = 'com.ilazarev.groovysamples'
+//artifactId = 'groovysamples'
+
+compileJava.enabled = false // todo: need this?
+sourceSets {
+    main {
+        groovy {
+            //srcDir 'src/main/java'
+            srcDir 'src/main/groovy'
+            // todo: do we need this?
+            srcDir 'src/main/resources'
+        }
+    }
+    test {
+        groovy {
+            srcDir 'src/test/groovy'
+            srcDir 'src/test/resources'
+        }
+    }
+}
+
+dependencies {
+    ivy "org.apache.ivy:ivy:2.3.0"
+    compile "org.codehaus.groovy:groovy-all:2.1.5"
+    testCompile "org.spockframework:spock-core:0.7-groovy-2.0"
+}
+
+tasks.withType(GroovyCompile) {
+    groovyClasspath += configurations.ivy
+}
