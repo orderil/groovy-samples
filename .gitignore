@@ -6,7 +6,6 @@ out/
 
 target/
 .gradle/
-gradle/
 build/
 overlays/
 *.bak
@@ -14,6 +13,5 @@ overlays/
 developer-stuff/
 
 *.class
-*.jar
 *.war
 *.ear

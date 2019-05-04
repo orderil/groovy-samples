@@ -4,7 +4,7 @@ apply plugin: 'groovy'
 apply plugin: 'war'
 //apply plugin: 'eclipse'
 apply plugin: 'idea'
-apply plugin: 'jetty'
+//apply plugin: 'jetty'
 
 //sourceCompatibility = 1.5
 version = '1.0'
